@@ -1,0 +1,17 @@
+diary_bot
+create table posts(
+id integer,
+user_id integer,
+body text,
+time_date varchar(50),
+time_clock varchar(50)
+);
+create table ideas(
+id integer,
+user_id integer,
+body text,
+time_date varchar(50),
+time_clock varchar(50)
+);
+
+
