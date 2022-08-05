@@ -1,5 +1,14 @@
 <h1>Diary Bot</h1>
 
+<h2><a href="https://t.me/godofdiarybot">Link</a></h2>
+
+<h2>Technology stack</h2>
+
+Platform: <a href="https://core.telegram.org/bots" target="_blank">Telegram Bots</a><br>
+Language: <a href="https://go.dev/" target="_blank">Go</a><br>
+Database: <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a><br>
+In-memory data store: <a href="https://redis.io/" target="_blank">Redis</a>
+
 <h2>Manual deployment</h2>
 
 <h3>Connect to the server and it's configuration</h3>
