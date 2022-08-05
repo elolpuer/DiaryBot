@@ -1,97 +1,79 @@
-# GoBlogBot
+<h1>Diary Bot</h1>
 
-# Deploy
+<h2>Manual deployment</h2>
+
+<h3>Connect to the server and it's configuration</h3>
+
+```shell
+ssh root@your_server_ip
+adduser egorg
+usermod -aG sudo egorg
+```
+
+<h3>Installing packages and creating a database</h3> 
+
+<h4>Postgres</h4> 
+
+```shell
+sudo apt update 
+sudo apt install postgresql postgresql-contrib
+sudo -i -u postgres
+psql 
+create database somedb;
+createuser egorg;
+ALTER USER egorg WITH ENCRYPTED PASSWORD 'pass';
+alter user egorg superuser createrole somedb;
+alter database somedb owner to egorg;
+```
 
 
-## Подключение к серверу и его настройка
+<h4>Golang</h3>
 
-$ ssh root@your_server_ip
+```shell
+sudo apt install golang
+go version
+mkdir ~/workplace/src/github.com/elolpuer
+nano ~/.profile
+```
 
-$ adduser egorg
-
-$ usermod -aG sudo egorg
-
-
-## Установка пакетов и создание базы данных
-
-### Postgres
-
-$ sudo apt update \
-$ sudo apt install postgresql postgresql-contrib\
-$ sudo -i -u postgres\
-$ psql \
-$ create database somedb;\
-$ createuser egorg;\
-$ ALTER USER egorg WITH ENCRYPTED PASSWORD 'pass';\
-$ alter user egorg superuser createrole somedb;\
-$ alter database somedb owner to egorg;
-
-### Golang
-
-$ sudo apt install golang\
-$ go version\
-$ mkdir ~/workplace/src/github.com/elolpuer\
-$ nano ~/.profile
----
+```shell
 export GOPATH=$HOME/workplace\
 export PATH=$PATH:$GOPATH/bin\
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
----
-\
-$ . ~/.profile
+~/.profile
+```
+<h4>Redis</h4>
 
-### Redis
+```shell
+sudo apt install redis-server
+supervised systemd
+sudo systemctl restart redis.service
+sudo systemctl status redis
+```
 
-$ sudo apt install redis-server\
-$ sudo nano /etc/redis/redis.conf
----
+<h4>Git</h4> 
 
- supervised systemd
+```shell
+sudo apt install git
+``` 
 
----
-\
-\
-$ sudo systemctl restart redis.service\
-$ sudo systemctl status redis
-$ sudo nano /etc/redis/redis.conf
----
+<h3>Clonning project from github and building</h3> 
 
-bind 127.0.0.1 ::1
-
----
-\
-\
-$ sudo systemctl restart redis
-$ sudo netstat -lnp | grep redis
-$ sudo nano /etc/redis/redis.conf
----
-
-requirepass password
-
----
-\
-\
-$ sudo systemctl restart redis.service
+```shell
+cd ~/workplace/src/github.com/elolpuer
+git clone https://github.com/elolpuer/DiaryBot.git
+go build main.go
+``` 
 
 
+<h3>Running daemon</h3> 
 
-### Git
-
-$ sudo apt install git
-
-## Клонирование проекта с github и его компилирование
-
-$ cd ~/workplace/src/github.com/elolpuer\
-$ git clone url\
-$ go build main.go
-
-
-## Запуск демона
-
-$ cd ../../etc/systemd/system/\
-$ sudo nano gosomething.service
-
----
+```shell 
+cd ../../etc/systemd/system/
+sudo nano gosomething.service
+``` 
+Insert this:
+```shell
 [Unit]\
 Description = Something Description
 
@@ -104,18 +86,16 @@ Restart=always
 
 [Install]\
 WantedBy=multi-user.target
----
+```
 
-$ sudo reboot\
-$ ssh root@your_server_ip\
-$ cd ../../etc/systemd/system/\
-$ sudo systemctl enable gosomething.service\
-$ sudo systemctl daemon-reload\
-$ sudo systemctl start gosomethint.service
+<h3>Reboot and run daemon</h3>
 
+```shell
+sudo reboot
+ssh root@your_server_ip
+cd ../../etc/systemd/system/
+sudo systemctl enable gosomething.service
+sudo systemctl daemon-reload
+sudo systemctl start gosomethint.service
+```
 
-
-
-
-
-# DiaryBot
