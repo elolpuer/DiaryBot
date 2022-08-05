@@ -24,6 +24,9 @@ createuser egorg;
 ALTER USER egorg WITH ENCRYPTED PASSWORD 'pass';
 alter user egorg superuser createrole somedb;
 alter database somedb owner to egorg;
+\q
+psql -h localhost -p 5432 -U egorg somedb
+\i pathToBot/cfg/db.sql
 ```
 
 
