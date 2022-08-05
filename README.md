@@ -77,6 +77,29 @@ git clone https://github.com/elolpuer/DiaryBot.git
 go build main.go
 ``` 
 
+<h3>Adding .env</h3>
+In the DiaryBot directory create file .env
+
+```shell
+nano .env
+```
+
+Add this data to file
+
+```shell
+Token=
+TokenDev=
+PgHost=
+PgPort=
+PgUser=
+PgPass=
+PgDB=
+SSLmode=require
+RedisHost=
+RedisPort=
+RedisPassword=""
+```
+
 
 <h3>Running daemon</h3> 
 
@@ -111,3 +134,9 @@ sudo systemctl daemon-reload
 sudo systemctl start gosomethint.service
 ```
 
+<h3>Some screenshots</h3>
+
+<img src="./screenshots/1.jpg" width="300px">
+<img src="./screenshots/2.jpg" width="300px">
+<img src="./screenshots/4.jpg" width="300px">
+<img src="./screenshots/3.jpg" width="300px">
