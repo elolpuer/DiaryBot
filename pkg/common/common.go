@@ -202,7 +202,7 @@ func ReturnOneMax(db *sql.DB, userID int, isPost bool) (int, error) {
 
 //Search поиск поста по дате
 func Search(db *sql.DB, userID int, date, month string, isPost bool) ([]*models.PostOrIdea, error) {
-	str := date + " " + month + " " + "2021"
+	str := date + " " + month + " " + "2022"
 	var query string
 	if isPost == true {
 		query = "SELECT * FROM posts WHERE user_id=$1 AND time_date=$2"
